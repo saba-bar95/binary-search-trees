@@ -38,10 +38,8 @@ class Tree {
   insert(node) {
     if (!this.tree.root) {
       this.tree.root = node;
-      this.tree.size++;
       return;
     }
-
     this.insertNode(this.tree.root, node);
   }
 
@@ -49,6 +47,7 @@ class Tree {
     if (!currentNode) {
       return node;
     }
+
     if (currentNode.value > node.value) {
       while (currentNode.left && currentNode.value > node.value) {
         currentNode = currentNode.left;
@@ -75,6 +74,22 @@ class Tree {
     }
   }
 
+  deleteNode(value) {}
+
+  find(value, currentNode = this.tree.root) {
+    if (currentNode.value === value) {
+      return currentNode;
+    }
+
+    if (currentNode.value > value) {
+      this.find(value, currentNode.left);
+    }
+
+    if (currentNode.value < value) {
+      this.find(value, currentNode.right);
+    }
+  }
+
   prettyPrint(node, prefix = "", isLeft = true) {
     if (!node) {
       return;
@@ -94,14 +109,5 @@ class Tree {
 }
 const bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 
-bst.insert(new Node(500));
-bst.insert(new Node(505));
-bst.insert(new Node(503));
-bst.insert(new Node(507));
-bst.insert(new Node(502));
-bst.insert(new Node(400));
-bst.insert(new Node(499));
-bst.insert(new Node(501));
-bst.insert(new Node(600));
-
 bst.prettyPrint(bst.tree.root);
+bst.find(5);
