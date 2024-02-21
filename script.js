@@ -78,6 +78,7 @@ class Tree {
 
   find(value, currentNode = this.tree.root) {
     if (currentNode.value === value) {
+      console.log(currentNode); // This prints node with value of 5
       return currentNode;
     }
 
@@ -110,4 +111,4 @@ class Tree {
 const bst = new Tree([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324]);
 
 bst.prettyPrint(bst.tree.root);
-bst.find(5);
+console.log(bst.find(5)); // This prints undefined
